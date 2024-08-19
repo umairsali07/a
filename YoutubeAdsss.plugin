@@ -6,13 +6,8 @@
 [URL Rewrite]
 
 # ======= 视频广告请求 ======= #
-(^https?:\/\/[\w-]+\.googlevideo\.com\/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+) $1$2$3 302
-^https?:\/\/[\w-]+\.googlevideo\.com\/(?!(dclk_video_ads|videoplayback\?)).+&oad - reject-200
+^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad reject-200
 
-# ======= 通用广告请求 ======= #
-^https?:\/\/(www|s)\.youtube\.com\/api\/stats\/ads - reject-200
-^https?:\/\/(www|s)\.youtube\.com\/(pagead|ptracking) - reject-200
-^https?:\/\/s\.youtube\.com\/api\/stats\/qoe\?adcontext - reject-200
 
 [Script]
 
@@ -22,4 +17,4 @@ http-response ^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|
 
 [MITM]
 
-hostname = %APPEND% -redirector*.googlevideo.com, *.googlevideo.com, www.youtube.com, s.youtube.com, youtubei.googleapis.com
+hostname = %APPEND% *.googlevideo.com, youtubei.googleapis.com
