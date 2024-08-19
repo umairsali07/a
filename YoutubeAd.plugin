@@ -2,12 +2,17 @@
 #!desc=Youtube去廣告、視頻畫中畫、後台播放
 #!author=@DivineEngine, @app2smile, @Maasea, @VirgilClyne
 #!UpdateTime=2024-01-10
+[Rule]
+AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT
+AND,((DOMAIN,youtubei.googleapis.com), (PROTOCOL,UDP)),REJECT
 
 [URL Rewrite]
 
 # ======= 视频广告请求 ======= #
 ^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad reject-200
 
+[Map Local]
+^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad data-type=text data=""
 
 [Script]
 
